@@ -19,12 +19,12 @@ import "fmt"
 // It converts Celsius to Fahrenheit: F = C*9/5 + 32
 // Note the Go signature style: parameter name THEN type, return type at the end.
 func celsiusToFahrenheit(c float64) float64 {
-	panic("TASK 1: not implemented yet")
+	return c*9/5 + 32
 }
 
 // TASK 2 — Implement the reverse: C = (F - 32) * 5/9
 func fahrenheitToCelsius(f float64) float64 {
-	panic("TASK 2: not implemented yet")
+	return (f - 32) * 5 / 9
 }
 
 func main() {
@@ -43,9 +43,20 @@ func main() {
 	//   25.0°C = 77.0°F
 	//   37.0°C = 98.6°F
 	//   100.0°C = 212.0°F
-
-	fmt.Println("TODO: print the conversion table")
+	tempsCelsius := []float64{0, 25, 37, 100}
+	var lastF float64 = 0
+	for _, c := range tempsCelsius {
+		f := celsiusToFahrenheit(c)
+		lastF = f
+		fmt.Printf("%.1f°C = %.1f°F\n", c, f)
+	}
 
 	// TASK 4 (stretch) — pick one Fahrenheit value (say 98.6) and print it
 	// converted back to Celsius, to sanity-check fahrenheitToCelsius.
+	if fahrenheitToCelsius(lastF) == 100 {
+		fmt.Println("works as expected")
+	} else {
+		fmt.Println("error in converstion")
+	}
+
 }
